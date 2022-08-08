@@ -10,6 +10,7 @@ spring:
           username: ${GIT_USER}
           password: ${GIT_PASSWORD}
           search-paths: config-data
+          skip-ssl-validation: true
   security:
     user:
       name: root
