@@ -1,17 +1,16 @@
 server:
   port: 8080
+
 spring:
   cloud:
     config:
       server:
         git:
           uri: https://gitlab.com/protectfacebook.php/micros.git
-          username: protectfacebook.php
-          password: 1006361228
-          search-paths: config-data
+          searchPaths: config-data
+          username: ${GIT_USER}
+          password: ${GIT_PASSWORD}
   security:
     user:
       name: root
       password: s3cr3t
-  profiles:
-    active: native
