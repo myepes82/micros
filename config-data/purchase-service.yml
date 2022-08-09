@@ -11,12 +11,6 @@ spring:
       bootstrap-servers: localhost:9092
     listener:
       ack-mode: manual_immediate
-    retry:
-      topic:
-        attempts: 3
-        enabled: true
-        multiplier: 5
-        delay: 15
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
