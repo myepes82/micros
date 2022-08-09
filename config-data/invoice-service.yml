@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: invoice-service
+  kafka:
+    producer:
+      acks: all
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: localhost:9092
+    listener:
+      ack-mode: manual_immediate
+    retry:
+      topic:
+        attempts: 3
+        enabled: true
+        multiplier: 5
+        delay: 15
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:invoiceDB;DB_CLOSE_DELAY=1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    hikari:
+      password:
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm::ss} {LOG_LEVEL_PATTERN:-%5p} %m%n"
+server:
+  port: 8083
+  servlet:
+    context-path: /invoice
+eureka:
+  client:
+    service-url:
+      "default-zone": http://localhost:8761/eureka/
